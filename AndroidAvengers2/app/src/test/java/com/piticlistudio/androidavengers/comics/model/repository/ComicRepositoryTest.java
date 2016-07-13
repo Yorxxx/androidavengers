@@ -86,7 +86,7 @@ public class ComicRepositoryTest {
     @Test
     public void generatesAComicEntityFromResponseModel() {
 
-        Result apiData = MarvelComicsAPIResponseFactory.generate(1);
+        Result apiData = com.piticlistudio.androidavengers.comics.model.repository.MarvelComicsAPIResponseFactory.generate(1);
 
         // Act
         Comic data = repository.fromResponseAPIToModel(apiData);
@@ -116,7 +116,7 @@ public class ComicRepositoryTest {
     @Test
     public void generatesNullComicEntityWithResponseModelWithoutId() {
 
-        Result apiData = MarvelComicsAPIResponseFactory.generate(1);
+        Result apiData = com.piticlistudio.androidavengers.comics.model.repository.MarvelComicsAPIResponseFactory.generate(1);
         apiData.id = null;
 
         // Act
@@ -129,7 +129,7 @@ public class ComicRepositoryTest {
     @Test
     public void emitsNextEventsWhenFetchingComicsByCharacter() {
 
-        MarvelComicsAPIResponse response = MarvelComicsAPIResponseFactory.generateResponse(8);
+        MarvelComicsAPIResponse response = com.piticlistudio.androidavengers.comics.model.repository.MarvelComicsAPIResponseFactory.generateResponse(8);
 
         doReturn(Observable.just(response))
                 .when(service)

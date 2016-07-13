@@ -18,10 +18,10 @@ import rx.schedulers.Schedulers;
  */
 public class ComicsListPresenter extends BaseRxMvpPresenter<IComicsListView> {
 
-    final ComicRepository repository;
+    private final ComicRepository repository;
 
     @Inject
-    public ComicsListPresenter(ComicRepository repository) {
+    ComicsListPresenter(ComicRepository repository) {
         this.repository = repository;
     }
 

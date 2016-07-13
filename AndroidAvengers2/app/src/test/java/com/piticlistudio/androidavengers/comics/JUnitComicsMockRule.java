@@ -1,4 +1,4 @@
-package com.piticlistudio.androidavengers.comics.model.repository;
+package com.piticlistudio.androidavengers.comics;
 
 import com.piticlistudio.androidavengers.comics.MarvelComicComponent;
 import com.piticlistudio.androidavengers.comics.MarvelComicModule;
@@ -9,7 +9,7 @@ import it.cosenonjaviste.daggermock.DaggerMockRule;
 
 public class JUnitComicsMockRule extends DaggerMockRule<MarvelComicComponent> {
 
-    JUnitComicsMockRule() {
+    public JUnitComicsMockRule() {
         super(MarvelComicComponent.class, new MarvelComicModule());
         addComponentDependency(ApplicationComponent.class, new ApplicationModule(null));
     }
