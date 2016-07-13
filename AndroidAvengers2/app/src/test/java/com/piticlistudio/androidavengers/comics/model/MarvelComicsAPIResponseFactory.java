@@ -1,4 +1,4 @@
-package com.piticlistudio.androidavengers.comics.model.repository;
+package com.piticlistudio.androidavengers.comics.model;
 
 import com.piticlistudio.androidavengers.comics.model.entity.Data;
 import com.piticlistudio.androidavengers.comics.model.entity.Image;

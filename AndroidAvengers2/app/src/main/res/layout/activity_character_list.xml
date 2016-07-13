@@ -24,7 +24,9 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|enterAlways"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:title="@string/comic_list_view_title"
+                app:titleTextAppearance="@style/TextAppearance.Toolbar"/>
 
         </android.support.design.widget.AppBarLayout>
 
@@ -54,6 +56,26 @@
                 android:textStyle="bold"/>
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/emptyview"
+            style="@style/TextAppearance.EmptyState"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="@string/comic_list_is_empty"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/errorview"
+            style="@style/TextAppearance.ErrorState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="@string/comic_list_load_error"
+            android:visibility="gone"/>
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeview"

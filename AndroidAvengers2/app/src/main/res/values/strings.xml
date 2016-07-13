@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">AndroidAvengers</string>
 
+    <string name="comic_list_view_title">Luke Cage Comics</string>
     <string name="comic_list_is_empty">There are no comics to show</string>
     <string name="comic_list_loading">Loading comics…</string>
+    <string name="comic_list_load_error">Something very bad happened. Call Batman and retry</string>
 </resources>

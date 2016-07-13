@@ -1,6 +1,7 @@
 package com.piticlistudio.androidavengers;
 
 import android.app.Application;
+import android.support.annotation.VisibleForTesting;
 
 import com.piticlistudio.androidavengers.comics.DaggerMarvelComicComponent;
 import com.piticlistudio.androidavengers.comics.MarvelComicComponent;
@@ -39,5 +40,10 @@ public class AndroidApplication extends Application {
 
     public MarvelComicComponent getComicComponent() {
         return comicComponent;
+    }
+
+    @VisibleForTesting
+    public void setComicComponent(MarvelComicComponent comicComponent) {
+        this.comicComponent = comicComponent;
     }
 }

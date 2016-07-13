@@ -13,4 +13,23 @@
         <item name="android:padding">32dp</item>
     </style>
 
+    <style name="TextAppearance.Toolbar" parent="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textAllCaps">true</item>
+
+    </style>
+
+    <style name="TextAppearance.EmptyState" parent="@style/Base.TextAppearance.AppCompat.Subhead">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/empty_state_text_color</item>
+    </style>
+
+    <style name="TextAppearance.ErrorState" parent="@style/Base.TextAppearance.AppCompat.Subhead">
+        <item name="android:gravity">center</item>
+        <item name="android:drawableTop">@drawable/ic_error_black_24dp</item>
+        <item name="android:drawablePadding">12dp</item>
+        <item name="android:textColor">@color/error_state_text_color</item>
+    </style>
+
 </resources>

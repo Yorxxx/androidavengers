@@ -21,9 +21,6 @@ import javax.inject.Inject;
  */
 public class ComicListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private static final int VIEW_TYPE_EMPTY_LIST = 0;
-    private static final int VIEW_TYPE_DATA = 1;
-
     private final Picasso picasso;
     private List<Comic> data;
     private IComicListAdapterClickListener listener;
@@ -46,30 +43,16 @@ public class ComicListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     @Override
-    public int getItemViewType(int position) {
-        if (data == null || data.isEmpty())
-            return VIEW_TYPE_EMPTY_LIST;
-        return VIEW_TYPE_DATA;
-    }
-
-    @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v;
-        switch (viewType) {
-            case VIEW_TYPE_EMPTY_LIST:
-                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.comic_list_adapter_cell_empty, parent, false);
-                return new EmptyHolder(v);
-            default:
-                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.comic_list_adapter_cell, parent, false);
-                ObjectViewHolder viewHolder = new ObjectViewHolder(v);
-                viewHolder.itemView.setOnClickListener(v1 -> {
-                    int adapterPos = viewHolder.getAdapterPosition();
-                    if (adapterPos != RecyclerView.NO_POSITION) {
-                        onItemClick(v1, adapterPos);
-                    }
-                });
-                return viewHolder;
-        }
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.comic_list_adapter_cell, parent, false);
+        ObjectViewHolder viewHolder = new ObjectViewHolder(v);
+        viewHolder.itemView.setOnClickListener(v1 -> {
+            int adapterPos = viewHolder.getAdapterPosition();
+            if (adapterPos != RecyclerView.NO_POSITION) {
+                onItemClick(v1, adapterPos);
+            }
+        });
+        return viewHolder;
     }
 
     private void onItemClick(View v, int position) {
@@ -81,22 +64,19 @@ public class ComicListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        switch (getItemViewType(position)) {
-            case VIEW_TYPE_DATA:
-                ObjectViewHolder viewHolder = (ObjectViewHolder) holder;
-                Comic comic = data.get(position);
-                viewHolder.title.setText(comic.getTitle());
-                picasso.load(comic.getThumbnailUri())
-                        .fit()
-                        .centerInside()
-                        .into(viewHolder.image);
-        }
+        ObjectViewHolder viewHolder = (ObjectViewHolder) holder;
+        Comic comic = data.get(position);
+        viewHolder.title.setText(comic.getTitle());
+        picasso.load(comic.getThumbnailUri())
+                .fit()
+                .centerInside()
+                .into(viewHolder.image);
     }
 
     @Override
     public int getItemCount() {
         if (data == null || data.isEmpty())
-            return 1;
+            return 0;
         return data.size();
     }
 
@@ -110,19 +90,6 @@ public class ComicListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
          * @param v        the view touched.
          */
         void onItemClick(Comic item, int position, View v);
-    }
-
-    /**
-     * Holder for empty cells.
-     */
-    private static class EmptyHolder extends RecyclerView.ViewHolder {
-
-        public TextView title;
-
-        EmptyHolder(View itemView) {
-            super(itemView);
-            title = (TextView) itemView.findViewById(R.id.title);
-        }
     }
 
     /**
