@@ -3,5 +3,12 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!-- Dimensions for comics list -->
     <dimen name="comic_list_adapter_cell_image_height">160dp</dimen>
+
+    <!-- Dimensions for comics detail -->
+    <dimen name="comic_detail_backdrop_height">210dp</dimen>
+    <dimen name="comic_detail_cover_height">160dp</dimen>
+    <dimen name="comic_detail_cover_width">100dp</dimen>
+    <dimen name="comic_detail_fab_margin">16dp</dimen>
 </resources>

@@ -1,12 +1,12 @@
 package com.piticlistudio.androidavengers.comics.model.repository;
 
 import android.support.annotation.Nullable;
-import android.support.annotation.VisibleForTesting;
 
 import com.piticlistudio.androidavengers.comics.model.entity.Comic;
 import com.piticlistudio.androidavengers.comics.model.entity.Image;
 import com.piticlistudio.androidavengers.comics.model.entity.MarvelComicsAPIResponse;
 import com.piticlistudio.androidavengers.comics.model.entity.Result;
+import com.piticlistudio.androidavengers.comics.model.entity.Url;
 import com.piticlistudio.androidavengers.dependencies.IMarvelService;
 
 import java.security.MessageDigest;
@@ -34,20 +34,21 @@ public class ComicRepository {
         this.service = service;
     }
 
+    /**
+     * Fetches comics for the specified character identifier.
+     *
+     * @param characterId the id of the character to fetch data.
+     * @return an Observable that emits a list of comics.
+     */
     public Observable<List<Comic>> fetchForCharacter(String characterId) {
 
         long ts = System.currentTimeMillis();
-        return service.getComicsForCharacter(characterId, PUBLIC_KEY, ts, md5(String.valueOf(ts)+PRIVATE_KEY+PUBLIC_KEY))
+        return service.getComicsForCharacter(characterId, PUBLIC_KEY, ts, md5(String.valueOf(ts) + PRIVATE_KEY + PUBLIC_KEY))
                 .flatMap(new Func1<MarvelComicsAPIResponse, Observable<List<Comic>>>() {
                     @Override
                     public Observable<List<Comic>> call(MarvelComicsAPIResponse resp) {
                         return Observable.from(resp.data.results)
-                                .map(new Func1<Result, Comic>() {
-                                    @Override
-                                    public Comic call(Result result) {
-                                        return fromResponseAPIToModel(result);
-                                    }
-                                })
+                                .map(result -> fromResponseAPIToModel(result))
                                 .toList();
                     }
                 });
@@ -55,6 +56,7 @@ public class ComicRepository {
 
     /**
      * Calculates the md5 hash of a given string.
+     *
      * @param s the string to calculate its md5
      * @return the hash value.
      */
@@ -87,6 +89,7 @@ public class ComicRepository {
      * Generates a comic entity from the response by the Marvel API.
      * We could still work with the data returned by Marvel, but I think it's better to isolate layers, so any changes
      * by Marvel would not affect our models.
+     *
      * @param apiModel the api model response.
      * @return a Comic entity with the data or null if apiModel is invalid.
      */
@@ -99,7 +102,7 @@ public class ComicRepository {
         comic.setDescription(apiModel.description);
         List<String> images = new ArrayList<>();
         for (Image image : apiModel.images) {
-            images.add(image.path+"."+image.extension);
+            images.add(image.path + "." + image.extension);
         }
         comic.setImagesUri(images);
 
@@ -108,7 +111,16 @@ public class ComicRepository {
         if (apiModel.pageCount != null)
             comic.setPageCount(apiModel.pageCount);
         comic.setTitle(apiModel.title);
-        comic.setThumbnailUri(apiModel.thumbnail.path+"."+apiModel.thumbnail.extension);
+        comic.setThumbnailUri(apiModel.thumbnail.path + "." + apiModel.thumbnail.extension);
+
+        if (apiModel.urls != null) {
+            for (Url url : apiModel.urls) {
+                if (url.type.equalsIgnoreCase("detail"))
+                    comic.setDetailUrl(url.url);
+                else if (url.type.equalsIgnoreCase("purchase"))
+                    comic.setPurchaseUrl(url.url);
+            }
+        }
         return comic;
     }
 

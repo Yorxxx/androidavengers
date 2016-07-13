@@ -87,7 +87,11 @@ dependencies {
     // Retrofit
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     //Gson
     compile 'com.google.code.gson:gson:2.4'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+
+    // Parcelable please
+    compile 'com.hannesdorfmann.parcelableplease:annotation:1.0.1'
+    apt 'com.hannesdorfmann.parcelableplease:processor:1.0.1'
 }

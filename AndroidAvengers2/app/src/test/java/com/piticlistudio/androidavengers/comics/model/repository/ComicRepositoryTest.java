@@ -1,6 +1,7 @@
 package com.piticlistudio.androidavengers.comics.model.repository;
 
 import com.piticlistudio.androidavengers.RxSchedulersOverride;
+import com.piticlistudio.androidavengers.comics.model.MarvelComicsAPIResponseFactory;
 import com.piticlistudio.androidavengers.comics.model.entity.Comic;
 import com.piticlistudio.androidavengers.comics.model.entity.MarvelComicsAPIResponse;
 import com.piticlistudio.androidavengers.comics.model.entity.Result;
@@ -86,7 +87,7 @@ public class ComicRepositoryTest {
     @Test
     public void generatesAComicEntityFromResponseModel() {
 
-        Result apiData = com.piticlistudio.androidavengers.comics.model.repository.MarvelComicsAPIResponseFactory.generate(1);
+        Result apiData = MarvelComicsAPIResponseFactory.generate(1);
 
         // Act
         Comic data = repository.fromResponseAPIToModel(apiData);
@@ -101,6 +102,8 @@ public class ComicRepositoryTest {
         assertTrue(data.getImagesUri().contains("image2.jpg"));
         assertEquals(apiData.title, data.getTitle());
         assertEquals(apiData.thumbnail.path+"."+apiData.thumbnail.extension, data.getThumbnailUri());
+        assertEquals(apiData.urls.get(0).url, data.getDetailUrl());
+        assertEquals(apiData.urls.get(1).url, data.getPurchaseUrl());
     }
 
     @Test
@@ -116,7 +119,7 @@ public class ComicRepositoryTest {
     @Test
     public void generatesNullComicEntityWithResponseModelWithoutId() {
 
-        Result apiData = com.piticlistudio.androidavengers.comics.model.repository.MarvelComicsAPIResponseFactory.generate(1);
+        Result apiData = MarvelComicsAPIResponseFactory.generate(1);
         apiData.id = null;
 
         // Act
@@ -129,7 +132,7 @@ public class ComicRepositoryTest {
     @Test
     public void emitsNextEventsWhenFetchingComicsByCharacter() {
 
-        MarvelComicsAPIResponse response = com.piticlistudio.androidavengers.comics.model.repository.MarvelComicsAPIResponseFactory.generateResponse(8);
+        MarvelComicsAPIResponse response = MarvelComicsAPIResponseFactory.generateResponse(8);
 
         doReturn(Observable.just(response))
                 .when(service)

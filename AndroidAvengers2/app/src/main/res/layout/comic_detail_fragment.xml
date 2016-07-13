@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:fitsSystemWindows="false"
+             android:orientation="vertical">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/contentView"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="48dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="The Jungle Book (2016)"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+
+                </android.support.v7.widget.Toolbar>
+
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="beforeDescendants"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:id="@+id/cover"
+                            android:layout_width="@dimen/comic_detail_cover_width"
+                            android:layout_height="@dimen/comic_detail_cover_height"
+                            android:layout_gravity="start"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/comic_detail_cover_example"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="6dp">
+
+                            <TextView
+                                android:id="@+id/description"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxLines="3"
+                                android:text="@string/lorem"/>
+
+                            <TableLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp">
+
+                                <TableRow
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="4dp"
+                                    android:padding="4dip"
+                                    android:showDividers="end">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical|start"
+                                        android:text="@string/comic_detail_pages_title"/>
+
+                                    <TextView
+                                        android:id="@+id/pagesTv"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical|start"
+                                        android:layout_marginLeft="8dp"
+                                        android:layout_marginStart="8dp"
+                                        android:maxLines="1"
+                                        android:text="42"
+                                        android:textStyle="bold"/>
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="4dp"
+                                    android:padding="4dip"
+                                    android:showDividers="end">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical|start"
+                                        android:text="@string/comic_detail_issue_number_title"/>
+
+                                    <TextView
+                                        android:id="@+id/issueTv"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical|start"
+                                        android:layout_marginLeft="8dp"
+                                        android:layout_marginStart="8dp"
+                                        android:maxLines="1"
+                                        android:text="42"
+                                        android:textStyle="bold"/>
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="4dip"
+                                    android:showDividers="end">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical|start"
+                                        android:text="@string/comic_detail_link_title"/>
+
+                                    <TextView
+                                        android:id="@+id/linkTv"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical|start"
+                                        android:layout_marginLeft="8dp"
+                                        android:layout_marginStart="8dp"
+                                        android:autoLink="web"
+                                        android:clickable="true"
+                                        android:maxLines="2"
+                                        android:text="@string/comic_detail_link_example"
+                                        android:textStyle="bold"/>
+
+                                </TableRow>
+
+                            </TableLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+                <ImageView
+                    android:id="@+id/backgroundimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:layout_weight="1"
+                    android:cropToPadding="false"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/comic_detail_backdrop_example"/>
+
+
+            </LinearLayout>
+
+
+        </android.support.v4.widget.NestedScrollView>
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+</FrameLayout>
+
+

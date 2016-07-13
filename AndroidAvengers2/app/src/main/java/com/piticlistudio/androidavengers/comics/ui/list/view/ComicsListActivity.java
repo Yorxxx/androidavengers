@@ -25,7 +25,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ComicsListActivity extends BaseMvpActivity<IComicsListView, ComicsListPresenter> implements IComicsListView, SwipeRefreshLayout.OnRefreshListener {
+public class ComicsListActivity extends BaseMvpActivity<IComicsListView, ComicsListPresenter> implements IComicsListView, SwipeRefreshLayout.OnRefreshListener, ComicListAdapter.IComicListAdapterClickListener {
 
     @Bind(R.id.loadingView)
     LinearLayout loading;
@@ -56,6 +56,7 @@ public class ComicsListActivity extends BaseMvpActivity<IComicsListView, ComicsL
         listview.addItemDecoration(new SpacesItemDecoration(16));
         listview.setAdapter(adapter);
         swipeRefreshLayout.setOnRefreshListener(this);
+        adapter.setListener(this);
 
         setRetainInstance(true);
 
@@ -109,5 +110,10 @@ public class ComicsListActivity extends BaseMvpActivity<IComicsListView, ComicsL
     @Override
     public void onRefresh() {
         loadData(true);
+    }
+
+    @Override
+    public void onItemClick(Comic item, int position, View v) {
+        getApplicationComponent().intentStarter().showComicDetail(this, item, false);
     }
 }

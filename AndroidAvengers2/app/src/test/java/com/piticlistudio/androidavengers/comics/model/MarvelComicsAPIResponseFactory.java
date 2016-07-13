@@ -5,6 +5,7 @@ import com.piticlistudio.androidavengers.comics.model.entity.Image;
 import com.piticlistudio.androidavengers.comics.model.entity.MarvelComicsAPIResponse;
 import com.piticlistudio.androidavengers.comics.model.entity.Result;
 import com.piticlistudio.androidavengers.comics.model.entity.Thumbnail;
+import com.piticlistudio.androidavengers.comics.model.entity.Url;
 
 import java.util.ArrayList;
 
@@ -40,6 +41,15 @@ public class MarvelComicsAPIResponseFactory {
         apiData.thumbnail = new Thumbnail();
         apiData.thumbnail.path = "thumbnailpath";
         apiData.thumbnail.extension = "png";
+        apiData.urls = new ArrayList<>();
+        Url url1 = new Url();
+        url1.type = "detail";
+        url1.url = "detailurl";
+        apiData.urls.add(url1);
+        Url url2 = new Url();
+        url2.type = "purchase";
+        url2.url = "purchaseurl";
+        apiData.urls.add(url2);
         return apiData;
     }
 }

@@ -1,8 +1,17 @@
 <resources>
     <string name="app_name">AndroidAvengers</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</string>
 
     <string name="comic_list_view_title">Luke Cage Comics</string>
     <string name="comic_list_is_empty">There are no comics to show</string>
     <string name="comic_list_loading">Loading comics…</string>
     <string name="comic_list_load_error">Something very bad happened. Call Batman and retry</string>
+
+    <string name="comic_detail_link_title">Link</string>
+    <string name="comic_detail_link_example">http://marvel.com/comics/issue/57954/power_man_and_iron_fist_2016_5?utm_campaign=apiRef&amp;utm_source=bc0e334ed74f618c4e2fcf20daa74ef4</string>
+    <string name="comic_detail_issue_number_title">Issue Number</string>
+    <string name="comic_detail_issue_number_unknown">Unknown</string>
+    <string name="comic_detail_pages_title">Pages</string>
+    <string name="comic_detail_pages_unknown">Unknown</string>
+
 </resources>
