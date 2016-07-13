@@ -1,9 +1,13 @@
 package com.piticlistudio.androidavengers.dependencies;
 
+import com.piticlistudio.androidavengers.comics.model.entity.MarvelComicsAPIResponse;
+
 import java.util.List;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
+import rx.Observable;
 
 /**
  * Definition of Marvel API calls
@@ -12,8 +16,11 @@ import retrofit2.http.Path;
  */
 public interface IMarvelService {
 
-    @GET("/v1/public/characters/{characterId}/comics?apikey=bc0e334ed74f618c4e2fcf20daa74ef4")
-    MarvelComicsResponse getComicsForCharacter(@Path("characterId") String characterId);
+    @GET("/v1/public/characters/{characterId}/comics")
+    Observable<MarvelComicsAPIResponse> getComicsForCharacter(@Path("characterId") String characterId,
+                                                              @Query("apikey") String key,
+                                                              @Query("ts") long timestamp,
+                                                              @Query("hash") String hash);
 
     class MarvelResponse {
         int code;
@@ -22,6 +29,10 @@ public interface IMarvelService {
 
     class MarvelComicsResponse extends MarvelResponse {
         MarvelComicDataResponse data;
+
+        public MarvelComicDataResponse getData() {
+            return data;
+        }
     }
 
     class MarvelComicDataResponse {
@@ -30,6 +41,10 @@ public interface IMarvelService {
         int total;
         int count;
         List<MarvelComicResponse> results;
+
+        public List<MarvelComicResponse> getResults() {
+            return results;
+        }
     }
 
     class MarvelComicResponse extends MarvelResponse {
@@ -44,6 +59,46 @@ public interface IMarvelService {
         List<MarvelPriceResponse> prices;
         MarvelImageResponse thumbnail;
         List<MarvelImageResponse> images;
+
+        public long getId() {
+            return id;
+        }
+
+        public int getDigitalId() {
+            return digitalId;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public int getIssueNumber() {
+            return issueNumber;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public int getPageCount() {
+            return pageCount;
+        }
+
+        public String getResourceURI() {
+            return resourceURI;
+        }
+
+        public List<MarvelPriceResponse> getPrices() {
+            return prices;
+        }
+
+        public MarvelImageResponse getThumbnail() {
+            return thumbnail;
+        }
+
+        public List<MarvelImageResponse> getImages() {
+            return images;
+        }
     }
 
     class MarvelPriceResponse {

@@ -21,4 +21,6 @@ public interface ApplicationComponent {
     Picasso picasso();
 
     IntentStarter intentStarter();
+
+    IMarvelService marvelService();
 }

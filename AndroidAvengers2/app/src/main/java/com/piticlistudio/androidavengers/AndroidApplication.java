@@ -2,6 +2,8 @@ package com.piticlistudio.androidavengers;
 
 import android.app.Application;
 
+import com.piticlistudio.androidavengers.comics.DaggerMarvelComicComponent;
+import com.piticlistudio.androidavengers.comics.MarvelComicComponent;
 import com.piticlistudio.androidavengers.dependencies.ApplicationComponent;
 import com.piticlistudio.androidavengers.dependencies.ApplicationModule;
 import com.piticlistudio.androidavengers.dependencies.DaggerApplicationComponent;
@@ -13,6 +15,7 @@ import com.piticlistudio.androidavengers.dependencies.DaggerApplicationComponent
 public class AndroidApplication extends Application {
 
     private ApplicationComponent applicationComponent;
+    private MarvelComicComponent comicComponent;
 
     @Override
     public void onCreate() {
@@ -24,9 +27,17 @@ public class AndroidApplication extends Application {
         this.applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .build();
+
+        this.comicComponent = DaggerMarvelComicComponent.builder()
+                .applicationComponent(applicationComponent)
+                .build();
     }
 
     public ApplicationComponent getApplicationComponent() {
         return this.applicationComponent;
+    }
+
+    public MarvelComicComponent getComicComponent() {
+        return comicComponent;
     }
 }
